@@ -1,0 +1,8 @@
+zero-security git-server
+    setup: git init && touch .git/git-daemon-export-ok
+    server: git daemon --reuseaddr --base-path=. --export-all --verbose --enable=receive-pack --port=42422
+    client: git clone git://<server>:<port>/
+
+backup git by crontab -e
+    tar -zcvf "/<backup-path>/priceshop-git-$(date '+\%Y-\%m-\%d-\%H').tar.gz" /<data-path>/priceshop/
+
